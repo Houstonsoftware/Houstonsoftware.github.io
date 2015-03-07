@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Множество Мандельброта</title> 
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,900|Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header>
+      <a href="index.html" id = "logo">
+        <h1> Множество Мандельброта</h1>
+        <h2> От Дмитрия Филиппова</h2>
+      </a>
+    </header>
+    <div id="wrapper">
+      <section>
+      	<canvas id="gamecanvas" style="border: 1px solid black; " width="600" height="600" onmousedown="mymousedown(event)" ></canvas>
+
+      </section>
+      <footer>
+        <a href="http://vk.com/mrprotos"><img src="img/vk-logo.png" alt="VKontavte logo." class="social-icon"></a>
+        <a href="https://twitter.com/dmitryph"><img src="img/twitter-logo.png" alt="Twitter logo." class="social-icon"></a>
+      </footer>
+    </div>
+    <footer>&copy; 2015 Dmitry Filippov</footer>
+    <script>
+var mywidth = 600;
+var myheight = 600;
+var myscale = 200;
+var myleft = -2;
+var mytop = 1.5;
+var canvas = document.getElementById("gamecanvas");
+var ctx = canvas.getContext("2d");
+
+paint ();
+
+function mymousedown(event){
+	var x = event.layerX;
+	var y = event.layerY;
+	console.log(x + " " + y );
+	myleft = x/myscale+myleft-mywidth/4/myscale; 
+	mytop = -y/myscale + mytop+myheight/4/myscale;
+	myscale = myscale*2;
+	console.log("click");
+	paint ();
+}
+
+function check ( x, y ){
+	var z = 0;
+	var z1 = 0;
+	var time = 0;
+	for(var i = 0; i < 1000; i++){
+		time++;
+		var zt = z;
+		z = (z*z) - (z1*z1);
+		z1 = 2* zt*z1;
+        z += x;
+        z1 += y;
+        if(z*z+z1*z1>2*2){
+        	return time;
+        }
+	}		
+	return 0;
+}
+
+
+function color (x){
+
+
+	if(x == 0){
+		return "BLACK";
+	} 
+
+	if(x%6 == 0){
+		return "red";
+	}
+		if(x%6 == 1){
+		return "orange";
+	}
+		if(x%6 == 2){
+		return "yellow";
+	}
+		if(x%6 == 3){
+		return "green";
+	}
+		if(x%6 == 4){
+		return "blue";
+	}
+		if(x%6 == 5){
+		return "#663399";
+	}
+
+}
+
+function paint (){
+for(var x=0; x<mywidth; x++) {
+	for(var y=0; y<myheight; y++) {
+		var zx = x/myscale+myleft;
+		var zy = -y/myscale+mytop;
+		var time = check(zx, zy);
+//		console.log("x=" + zx + "  y=" + zy + "   time=" + time);
+		ctx.fillStyle = color(time);
+		ctx.fillRect(x,y,1,1);	
+	}
+}
+}
+</script>
+  </body>
+</html>
+
+
