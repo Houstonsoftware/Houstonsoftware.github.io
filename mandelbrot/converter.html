@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Исправление уравнений</title> 
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,900|Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+    function convert(){
+        var X = 0; 
+        console.log("s");
+        var div = document.getElementById("myoutput");
+        var inputElement = document.getElementById("S1");
+        var S = inputElement.value;
+                div.innerHTML = "";
+        for( var i = 0 ; i <= S.length; i++){
+          if(X == 0){
+            if (S.charAt(i) != " " && S.charAt(i) != "+" && S.charAt(i) != "=" && S.charAt(i) != ">"){
+              X = 1;  
+            }
+            div.innerHTML = div.innerHTML + S.charAt(i);
+          }else{
+            if (S.charAt(i) == " "){
+              X = 0;
+              div.innerHTML = div.innerHTML + S.charAt(i);
+            }else{
+            if (S.charAt(i) == "1" || S.charAt(i) == "2" || S.charAt(i) == "3" || S.charAt(i) == "4" || S.charAt(i) == "5" || S.charAt(i) == "6" || S.charAt(i) == "7" || S.charAt(i) == "8" || S.charAt(i) == "9" || S.charAt(i) == "0"){
+              div.innerHTML = div.innerHTML + "<sub>" + S.charAt(i) + "</sub>";
+            }else{
+              div.innerHTML = div.innerHTML + S.charAt(i);
+            }
+          }
+        }
+
+        }
+      }
+      </script>
+
+  </head>
+  <body>
+    <header>
+      <a href="index.html" id = "logo">
+        <h1> Конвертер химических уравнений </h1>
+        <h2> </h2>
+                          <nav>
+        <ul>
+          <li><a href="about.html" >Информашка</a></li>
+          <li><a href="mandelbrot.html" >Мандельброт</a></li>
+          <li><a href="converter.html" class= "selected">Конвертер химических уравнений</a></li>
+          <li><a href="contact.html" >Контакты</a></li>
+        </ul>
+      </nav>
+      </a>
+    </header>
+    <div id="wrapper">
+      <section>
+      	<form>
+Введите формулу: 
+<input id ="S1" >
+<input type ="button" value="Submit" onClick= "convert();">
+</form>
+      </section>
+      <footer>
+        <a href="http://vk.com/mrprotos"><img src="img/vk-logo.png" alt="VKontavte logo." class="social-icon"></a>
+        <a href="https://twitter.com/dmitryph"><img src="img/twitter-logo.png" alt="Twitter logo." class="social-icon"></a>
+      </footer>
+      <div id="myoutput"></div>
+    </div>
+    <footer>&copy; 2015 Dmitry Filippov</footer> 
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
