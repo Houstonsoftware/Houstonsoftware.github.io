@@ -24,6 +24,9 @@
             }
             res = res + S.charAt(i);
           }else{
+            if(s.charAt(i) == "+" || s.charAt(i) == "-"){
+              res = res+ "<sup>" + S.charAt(i) + "</sup>";
+            }else{
             if (S.charAt(i) == " "){
               X = 0;
               res= res+ S.charAt(i);
@@ -41,6 +44,7 @@
               res = res + S.charAt(i);
             }
           }
+        }
         }
 
         }
