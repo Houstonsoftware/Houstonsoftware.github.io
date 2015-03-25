@@ -20,9 +20,9 @@
     var S = inputElement.value;
     div.innerHTML = "";
     var res = "";
-    for( var i = 0 ; i <= S.length; i++){
+    for( var i = 0 ; i <= S.length+1; i++){
       if(X == 0){
-        if (S.charAt(i) != " " && (S.charAt(i) != "+" && S.charAt(i-1) != " ") || (S.charAt(i) != "-" && S.charAt(i+1) != "-" && S.charAt(i+2) != ">")){
+        if (S.charAt(i) != " " && (S.charAt(i) != "+" && S.charAt(i-1) != " ") && (S.charAt(i) != "-" && S.charAt(i+1) != "-" && S.charAt(i+2) != ">")){
           X = 1;  
         }
         if(S.charAt(i) == "-" && S.charAt(i+1) == "-" && S.charAt(i+2) == ">"){
@@ -32,7 +32,9 @@
           res = res + S.charAt(i);
         }
       }else{
+        console.log("xxx");
         if(S.charAt(i) == "+" || S.charAt(i) == "-"){
+          console.log("x");
           res = res+ "<sup>" + S.charAt(i) + "</sup>";
         }else{
           if (S.charAt(i) == " "){
