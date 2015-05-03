@@ -1,18 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Исправление уравнений</title> 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,900|Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
+    <meta charset="utf-8">
+    <title>Коныертер химических уравнений</title> 
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,900|Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  var state = "stateBegining";
+  function hadleNextChar(c){
+    switch (state) {
+      case "stateBegining":
+        stateBegining(c);
+        break;
+      case "stateElement":
+        stateElement(c);
+        break;
+      case "stateEindex":
+        stateEindex(c);
+        break;
+      case "statePlus":
+        statePlus(c);
+        break;
+      case "stateSpace":
+        stateSpace(c);
+        break;
+      case "stateArrow":
+        stateArrow(c);
+        break;
+      case "stateIonindex":
+        stateIonindex(c);
+        break;
+      case "stateElcount":
+        stateElcount(c);
+        break;
+    }
+  }
+
   function isdigit(x){
     return x == "1" || x == "2" || x == "3" || x == "4" || x == "5" || x == "6" || x == "7" || x == "8" || x == "9" || x == "0";
   }
-  function convert(){
+  function stateBegining(c){
+    
+  }
+  function stateElement(c){
+
+  }
+  function stateEindex(c){
+     
+  }
+  function statePlus(c){
+    
+  }
+  function stateSpace(c){
+    
+  }
+  function stateArrow(c){
+    
+  }
+  function stateIonindex(c){
+    
+  }
+  function stateElcount(c){
+    
+  }
+
+ /* function convert(){
     var X = 0; 
     var div = document.getElementById("myoutput");
     var html = document.getElementById("HTML");
@@ -20,7 +76,7 @@
     var S = inputElement.value;
     div.innerHTML = "";
     var res = "";
-    for( var i = 0 ; i <= S.length+1; i++){
+    for( var i = 0 ; i <= S.length; i++){
       if(X == 0){
         if (S.charAt(i) != " " && (S.charAt(i) != "+" && S.charAt(i-1) != " ") && (S.charAt(i) != "-" && S.charAt(i+1) != "-" && S.charAt(i+2) != ">")){
           X = 1;  
@@ -31,10 +87,7 @@
         }else{
           res = res + S.charAt(i);
         }
-      }else{
-        console.log("xxx");
         if(S.charAt(i) == "+" || S.charAt(i) == "-"){
-          console.log("x");
           res = res+ "<sup>" + S.charAt(i) + "</sup>";
         }else{
           if (S.charAt(i) == " "){
@@ -77,19 +130,19 @@
 </head>
 <body>
   <header>
-    <a href="index.html" id = "logo">
-      <h1> Конвертер химических уравнений </h1>
-      <h2> </h2>
-      <nav>
+      <a href="index.html" id = "logo">
+        <h1> Конвертер химических уравнений</h1>
+      </a>
+                  <nav>
         <ul>
           <li><a href="about.html" >Информашка</a></li>
           <li><a href="mandelbrot.html" >Мандельброт</a></li>
-          <li><a href="converter.html" class= "selected">Конвертер химических уравнений</a></li>
+          <li><a href="converter.html" class ="selected">Конвертер химических уравнений</a></li>
           <li><a href="contact.html" >Контакты</a></li>
+          <li><a href="whirl.html" >Вирл</a></li>
         </ul>
       </nav>
-    </a>
-  </header>
+    </header>
   <div id="wrapper">
     <section>
      <form>
@@ -102,13 +155,14 @@
     <p>Превью</p>
     <div id="myoutput"></div> 
   </section>
+  </div>
   <footer>
     <a href="http://vk.com/mrprotos"><img src="img/vk-logo.png" alt="VKontavte logo." class="social-icon"></a>
     <a href="https://twitter.com/dmitryph"><img src="img/twitter-logo.png" alt="Twitter logo." class="social-icon"></a>
     <a href="http://tabun.everypony.ru/profile/Hell_Rider/created/topics/"><img src="img/taboon-logo.png" alt="Taboon logo." class="social-icon"></a>
   </footer>
 
-</div>
+
 <footer>&copy; 2015 Dmitry Filippov</footer> 
 </body>
 </html>
