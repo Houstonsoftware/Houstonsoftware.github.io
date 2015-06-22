@@ -12,160 +12,112 @@
   <body>
     <header>
       <a href="index.html" id = "logo">
-        <h1> Вирл</h1>
+        <h1> Множество Мандельброта</h1>
+        <h2> От Дмитрия Филиппова</h2>
       </a>
                   <nav>
         <ul>
           <li><a href="about.html" >Информашка</a></li>
-          <li><a href="mandelbrot.html" >Мандельброт</a></li>
+          <li><a href="mandelbrot.html" class= "selected">Мандельброт</a></li>
           <li><a href="converter.html">Конвертер химических уравнений</a></li>
           <li><a href="contact.html" >Контакты</a></li>
-          <li><a href="whirl.html" class ="selected">Вирл</a></li>
         </ul>
       </nav>
     </header>
     <div id="wrapper">
       <section>
-        <canvas id="gamecanvas" style="border: 1px solid black; " width="600" height="600"  ></canvas>
+      	<p>Click toср scop</p>
+      	<canvas id="gamecanvas" style="border: 1px solid black; " width="600" height="600" onmousedown="mymousedown(event)" ></canvas>
 
       </section>
-    </div>
       <footer>
         <a href="http://vk.com/mrprotos"><img src="img/vk-logo.png" alt="VKontavte logo." class="social-icon"></a>
         <a href="https://twitter.com/dmitryph"><img src="img/twitter-logo.png" alt="Twitter logo." class="social-icon"></a>
         <a href="http://tabun.everypony.ru/profile/Hell_Rider/created/topics/"><img src="img/taboon-logo.png" alt="Taboon logo." class="social-icon"></a>
       </footer>
+    </div>
     <footer>&copy; 2015 Dmitry Filippov</footer>
     <script>
 var mywidth = 600;
 var myheight = 600;
-var matrix1 = new Array(mywidth+1);
-  for (var i = 0; i < mywidth; i++) {
-    matrix1[i] = new Array(myheight+1);
-  }
-var matrix2 = new Array(mywidth+1);
-  for (var i = 0; i < mywidth; i++) {
-    matrix2[i] = new Array(myheight+1);
-  }
-
-for(var i =0; i< mywidth; i++){
-  for(var j = 0; j < myheight; j++){
-      matrix1[i][j] = Math.floor ( Math.random()*16);
-  }
-}
-function numline(x,y){
-  if(x == 15){
-    return (y == 0);
-  }else{
-    return (y == x+1);
-  }
-}
-
-function check (x, y){
-  matrix2[x][y] = matrix1[x][y];
-  for(var dx = -1; dx <= 1; dx++){
-  for(var dy = -1; dy <= 1; dy++){
-    if (dx!=0 || dy!=0) {
-      var x2 = (x+dx+mywidth)%mywidth;
-      var y2 = (y+dy+myheight)%myheight;
-    }
-    if(numline(matrix1[x][y], matrix1[x2][y2])){
-      matrix2[x][y] = matrix1[x2][y2];
-    }
-  }}
-}
-
-function setPixel(imageData, x, y, r, g, b, a) {
-    index = (x + y * imageData.width) * 4;
-    imageData.data[index+0] = r;
-    imageData.data[index+1] = g;
-    imageData.data[index+2] = b;
-    imageData.data[index+3] = a;
-}
-
-function color1 (x){
-  if(x%16 == 0){
-    return 255;
-  }
-    if(x%16 == 1){
-    return 246;
-  }
-    if(x%16 == 2){
-    return 236;
-  }
-    if(x%16 == 3){
-    return 226;
-  }
-    if(x%16 == 4){
-    return 216;
-  }
-    if(x%16 == 5){
-    return 206;
-  }
-      if(x%16 == 6){
-    return 196;
-  }
-      if(x%16 == 7){
-    return 186;
-  }
-      if(x%16 == 8){
-    return 176;
-  }
-      if(x%16 == 9){
-    return 166;
-  }
-      if(x%16 == 10){
-    return 156;
-  }
-      if(x%16 == 11){
-    return 146;
-  }
-      if(x%16 == 12){
-    return 136;
-  }
-      if(x%16 == 13){
-    return 126;
-  }
-      if(x%16 == 14){
-    return 116;
-  }
-      if(x%16 == 15){
-    return 106;
-  }
-}
-function color2 (x){
-
-  return 0;
-}
-function color3 (x){
-
-  return 0;
-}
-function paint (){
-for(var x=0; x<mywidth; x++) {
-  for(var y=0; y<myheight; y++) {
-    check(x,y); 
-  }
-}
-for(var x=0; x<mywidth; x++) {
-  for(var y=0; y<myheight; y++) {
-    matrix1[x][y] = matrix2[x][y]; 
-  }
-}
-
-for(var x=0; x<mywidth; x++) {
-  for(var y=0; y<myheight; y++) {
-    setPixel(imageData, x, y, color1(matrix1[x][y]),color2(matrix1[x][y]),color3(matrix1[x][y]), 128)
-  }
-}  
-ctx.putImageData(imageData, 0, 0);
-}
+var myscale = 200;
+var myleft = -2;
+var mytop = 1.5;
 var canvas = document.getElementById("gamecanvas");
 var ctx = canvas.getContext("2d");
-imageData = ctx.createImageData(mywidth, myheight);
-setInterval(paint, 0);
+
+paint ();
+
+function mymousedown(event){
+	var x = event.layerX;
+	var y = event.layerY;
+	console.log(x + " " + y );
+	myleft = x/myscale+myleft-mywidth/4/myscale; 
+	mytop = -y/myscale + mytop+myheight/4/myscale;
+	myscale = myscale*2;
+	console.log("click");
+	paint ();
+}
+
+function check ( x, y ){
+	var z = 0;
+	var z1 = 0;
+	var time = 0;
+	for(var i = 0; i < 1000; i++){
+		time++;
+		var zt = z;
+		z = (z*z) - (z1*z1);
+		z1 = 2* zt*z1;
+        z += x;
+        z1 += y;
+        if(z*z+z1*z1>2*2){
+        	return time;
+        }
+	}		
+	return 0;
+}
 
 
+function color (x){
+
+
+	if(x == 0){
+		return "BLACK";
+	} 
+
+	if(x%6 == 0){
+		return "red";
+	}
+		if(x%6 == 1){
+		return "orange";
+	}
+		if(x%6 == 2){
+		return "yellow";
+	}
+		if(x%6 == 3){
+		return "green";
+	}
+		if(x%6 == 4){
+		return "blue";
+	}
+		if(x%6 == 5){
+		return "#663399";
+	}
+
+}
+
+function paint (){
+for(var x=0; x<mywidth; x++) {
+	for(var y=0; y<myheight; y++) {
+		var zx = x/myscale+myleft;
+		var zy = -y/myscale+mytop;
+		var time = check(zx, zy);
+//		console.log("x=" + zx + "  y=" + zy + "   time=" + time);
+		ctx.fillStyle = color(time);
+		ctx.fillRect(x,y,1,1);	
+	}
+}
+}
 </script>
   </body>
 </html>
